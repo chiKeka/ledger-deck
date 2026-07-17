@@ -5,45 +5,38 @@
    "dark product" default — REPLACE them to match the brief or the brand.
    =================================================================== */
 :root {
-  /* Surfaces */
-  --bg: #05070a;
-  --bg-grad-1: rgba(79, 229, 176, 0.12);
-  --bg-grad-2: rgba(41, 192, 240, 0.08);
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-2: rgba(255, 255, 255, 0.07);
+  /* Surfaces — clean consulting white, cool undertone */
+  --bg: #fafbfc;
+  --bg-grad-1: rgba(34, 81, 255, 0.045);
+  --bg-grad-2: rgba(5, 28, 44, 0.035);
+  --surface: rgba(5, 28, 44, 0.03);
+  --surface-2: rgba(5, 28, 44, 0.055);
 
-  /* Ink */
-  --fg: #f4f7fa;
-  --fg-muted: #9aa4b2;
-  --fg-faint: #626d7d;
+  /* Ink — deep navy, not black */
+  --fg: #051c2c;
+  --fg-muted: #46586a;
+  --fg-faint: #8494a3;
 
   /* Hairlines */
-  --hair: rgba(255, 255, 255, 0.1);
-  --hair-2: rgba(255, 255, 255, 0.06);
+  --hair: rgba(5, 28, 44, 0.14);
+  --hair-2: rgba(5, 28, 44, 0.07);
 
-  /* Accent — ONE accent. May be a 2–4 stop gradient within ~80° of hue. */
-  --primary: #4fe5b0;
-  --accent: linear-gradient(
-    115deg,
-    #c8f56e 0%,
-    #5aeeb0 42%,
-    #34dcd8 74%,
-    #29c0f0 100%
-  );
-  --accent-ink: #04140e;
+  /* Accent — one electric consulting blue, used sparingly */
+  --primary: #2251ff;
+  --accent: linear-gradient(115deg, #1236c9 0%, #2251ff 55%, #4d79ff 100%);
+  --accent-ink: #ffffff;
 
-  /* Radius */
-  --radius: 22px;
-  --radius-sm: 12px;
-  --radius-lg: 26px;
+  /* Radius — crisp, not soft */
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-lg: 14px;
 
-  /* Depth */
-  --shadow: 0 50px 120px -50px rgba(0, 0, 0, 0.9);
-  --glow: 0 30px 80px -40px rgba(79, 229, 176, 0.5);
+  /* Depth — restrained */
+  --shadow: 0 24px 60px -30px rgba(5, 28, 44, 0.25);
+  --glow: 0 18px 50px -28px rgba(34, 81, 255, 0.35);
 
-  /* Type */
-  --font-head: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display',
-    sans-serif;
+  /* Type — authoritative serif display, neutral sans body */
+  --font-head: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text',
     sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -54,8 +47,8 @@
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Atmosphere */
-  --grain: 0.035;
-  --vignette: rgba(0, 0, 0, 0.22);
+  --grain: 0.012;
+  --vignette: rgba(5, 28, 44, 0.05);
 
   /* Responsive gutter — fluid side / vertical padding */
   --gutter: clamp(28px, 6vw, 120px);
