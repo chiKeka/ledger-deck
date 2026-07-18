@@ -26,7 +26,7 @@ export default function App() {
       <Cover
         nav="Cover"
         notes="15s. One breath: public falsifiable record, probabilities locked, scored by reality. Then move."
-        kicker="Progress report · Jun 10 → Jul 16, 2026"
+        kicker="Progress report · Jun 10 → Jul 17, 2026"
         title={
           <>
             The Chikeka Ledger,
@@ -49,17 +49,17 @@ export default function App() {
 
       {/* 3 - The headline number · ~20s */}
       <BigNumber
-        nav="Brier 0.192"
+        nav="Brier 0.190"
         notes="20s. Lower is better; coin flip is 0.250. The gap is the skill. Don't explain Brier - the caption does."
         kicker="The scoreboard"
-        value={<CountUp to={0.192} decimals={3} duration={1800} />}
+        value={<CountUp to={0.19} decimals={3} duration={1800} />}
         caption={
           <>
-            Brier score across 26 resolved claims.
+            Brier score across 27 resolved claims.
             <br />A coin flip scores 0.250 - lower is better.
           </>
         }
-        foot="Skill vs coin-flip +0.058 · vs recorded base rates +0.020 · board figures, 2026-07-16"
+        foot="Skill vs coin-flip +0.060 · vs recorded base rates +0.021 · board figures, 2026-07-17"
       />
 
       {/* 4 - The record · ~20s */}
@@ -75,7 +75,7 @@ export default function App() {
             caption: '73 by the twin, 3 by Bruno',
           },
           {
-            value: <CountUp to={19} />,
+            value: <CountUp to={20} />,
             label: 'Confirmed',
             caption: 'sealed with evidence',
           },
@@ -85,7 +85,7 @@ export default function App() {
             caption: 'visible forever',
           },
           {
-            value: <CountUp to={48} />,
+            value: <CountUp to={47} />,
             label: 'Still open',
             caption: 'resolving through Q1 2027',
           },
@@ -120,7 +120,7 @@ export default function App() {
         body={
           <p>
             The board updates daily and reckons every Sunday, without
-            intervention. 41 commits since go-live - every one a ledger event.
+            intervention. 42 commits since go-live - every one a ledger event.
           </p>
         }
         media={
@@ -144,7 +144,7 @@ export default function App() {
                   { label: 'Jun 22', value: 2 },
                   { label: 'Jun 29', value: 12 },
                   { label: 'Jul 6', value: 2 },
-                  { label: 'Jul 13', value: 5 },
+                  { label: 'Jul 13', value: 6 },
                 ]}
               />
             </div>
@@ -177,12 +177,12 @@ export default function App() {
             { mid: 35, n: 1, hit: 0 },
             { mid: 45, n: 3, hit: 100 },
             { mid: 55, n: 7, hit: 57 },
-            { mid: 65, n: 5, hit: 60 },
+            { mid: 65, n: 6, hit: 67 },
             { mid: 75, n: 6, hit: 83 },
             { mid: 85, n: 1, hit: 100 },
             { mid: 95, n: 3, hit: 100 },
           ]}
-          caption="26 valid resolutions · dot area = number of claims · grey dots are buckets too small to read"
+          caption="27 valid resolutions · dot area = number of claims · grey dots are buckets too small to read"
         />
       </Slide>
 
@@ -206,7 +206,7 @@ export default function App() {
           title: 'Outside the bubble',
           points: [
             'Retrieved against his profile, not from it',
-            '22 resolutions · Brier 0.181',
+            '23 resolutions · Brier 0.179',
             'The measurable skill lives here',
           ],
         }}
@@ -253,7 +253,7 @@ export default function App() {
         title="Keep two things. Stop two things."
         tiles={[
           {
-            k: 'KEEP · Brier 0.181 vs 0.253',
+            k: 'KEEP · Brier 0.179 vs 0.253',
             title: 'Go out-of-frame',
             body: 'Claims retrieved against the profile beat home-turf claims. The edge is outside the bubble.',
             c: 6,
@@ -272,7 +272,7 @@ export default function App() {
             c: 6,
           },
           {
-            k: 'STOP · +0.020 at n=26',
+            k: 'STOP · +0.021 at n=27',
             title: 'Calling the margin skill',
             body: 'The edge over base rates is real but thin. The bar is surviving n=100.',
             c: 6,
