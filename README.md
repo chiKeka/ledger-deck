@@ -1,140 +1,78 @@
-<div align="center">
+# Chikeka Ledger Deck
 
-# ⚡ Bolt Slides
+An interactive, 13-slide progress report for [the Chikeka Ledger](https://github.com/chiKeka/ledger): a public record of falsifiable claims about AI, infrastructure, and institutions, with probabilities registered before resolution. The deck visualizes the claim field, related-claim graph, Brier scores, calibration, jurisdictions, and lessons from the record.
 
-**Presentation decks that are working web apps.**
+**The checked-in deck is a July 17, 2026 data snapshot**, covering June 10–July 17. Its 76 registered claims, 27 valid resolutions, and 0.190 Brier score are figures displayed in that snapshot, not refreshed or independently re-audited figures. The presentation reads bundled data; it does not fetch a live board as you present.
 
-One prompt in — your agent builds a deck where every slide is a live, responsive web page.
-3D, live data, working prototypes, and whatever you can prompt.
+## Run locally
 
-[![Open in Bolt](https://img.shields.io/badge/Open_in-⚡_Bolt-1a1a2e?style=flat-square)](https://bolt.new/github.com/stackblitz/bolt-slides)
-[![Open in StackBlitz](https://img.shields.io/badge/Open_in-StackBlitz-1389fd?style=flat-square)](https://stackblitz.com/github/stackblitz/bolt-slides)
-[![License: MIT](https://img.shields.io/badge/License-MIT-c8f56e?style=flat-square)](./LICENSE)
+Use Node.js 22 and npm (verified with the committed lockfile).
 
-<img src=".github/assets/demo.gif" alt="Bolt Slides — from one prompt in Bolt to a finished interactive deck" width="820" />
-
-</div>
-
----
-
-## Why we made this
-
-AI for slides is awesome, but the outputs tend to be slop: generic layouts, walls of bullets, nothing you'd be proud to present.
-
-And also: why are slides still *static*? Agents can build *anything*. What would it look like if you (tastefully) turned them loose on slides?
-
-Bolt Slides is what we built to find out: building blocks any agent (Claude Code, Codex, Cursor, Bolt) can compose stunning, compelling presentations with. Bespoke layouts, real typography, considered animations, interactive anything. Every deck is a real web app, responsive on any screen, shared as a link.
-
-**Taste comes standard.**
-
-[See what that looks like →](https://x.com/boltdotnew/status/2077770386444341332?s=20)
-
-Under the hood it's a classic paged deck — Slidev-style dock, thumbnail sidebar, grid overview, click-builds, annotations, synced presenter mode — where each slide is a plain React component. If you can build it for the web, you can present it.
-
-## Quick start
-
-**With an agent (the fun way).** Open the repo in [Bolt](https://bolt.new/github.com/stackblitz/bolt-slides) and prompt it:
-
-> Build me a deck pitching «your thing» to «your audience».
-
-The bundled skill ([`.bolt/skills/slides/SKILL.md`](./.bolt/skills/slides/SKILL.md)) teaches the agent how to theme, compose, and write the deck — including setting the tab title and favicon — so a single prompt returns a finished, presentable app.
-
-**By hand.**
-
-```bash
-git clone https://github.com/stackblitz/bolt-slides
-cd bolt-slides
-npm install
+```sh
+git clone https://github.com/chiKeka/ledger-deck.git
+cd ledger-deck
+npm ci
 npm run dev
 ```
 
-The dev server opens a 26-slide demo that exercises every component. Delete the demo slides in [`src/App.tsx`](./src/App.tsx) and author your own.
+Open the URL printed by Vite, normally `http://localhost:5173`. No account, API key, or backend is needed to view the bundled deck.
 
-## Authoring
-
-Each top-level child of `<Deck>` is one slide. Compose them from the component library, or write plain JSX:
-
-```tsx
-<Deck>
-  <Cover
-    kicker="Acme · Series A"
-    title={<span className="accent-text">Acme</span>}
-    subtitle="Answers, not dashboards."
-    notes="Welcome — set up the problem, then hold a beat."
-  />
-
-  <Slide center nav="Thesis">
-    <h2 className="headline">
-      Dashboards are everywhere. <span className="accent-text">Insight isn't.</span>
-    </h2>
-    <Build at={1}>
-      <p className="subhead">Acme turns raw events into answers — automatically.</p>
-    </Build>
-  </Slide>
-
-  <Agenda
-    kicker="Agenda"
-    title="What we'll cover."
-    items={['The problem', 'How it works', { title: 'Pricing & the ask', hint: '5 min' }]}
-  />
-</Deck>
+```sh
+npx tsc --noEmit
+npm run build -- --base=./
+npm run preview
 ```
 
-- **`<Build at={n}>`** reveals content on the nth click — arrow keys step through builds before advancing slides, forward *and* back.
-- **`notes="…"`** on any slide shows up in presenter mode; notes you edit while presenting persist locally.
-- Slides are ordinary React — fetch live data, mount a 3D scene, embed your actual product.
+The relative base supports a static build served under a subdirectory such as `/ledger-deck/`. These install, type-check, and build commands were verified. There is no lint or automated test script in `package.json`.
 
 ## Presenting
 
-<img src=".github/assets/grid-view.png" alt="Grid view of every slide" width="820" />
-
 | Key | Action |
 | --- | --- |
-| `→` `↓` `Space` | Next (reveals builds first) |
-| `←` `↑` | Previous (rewinds builds) |
-| `Home` / `End` | First / last slide |
-| `S` | Sidebar — thumbnail rail |
-| `G` | Grid view — every slide at once |
-| `A` | Annotate — pen, highlighter, shapes, eraser |
+| `→`, `↓`, `Space` | Next build or slide |
+| `←`, `↑` | Previous build or slide |
+| `Home`, `End` | First or last slide |
+| `S` | Thumbnail sidebar |
+| `G` | Grid overview |
+| `A` | Annotation tools |
 | `F` | Fullscreen |
-| `P` | Presenter mode — synced new tab |
+| `P` | Presenter tab |
 | `H` | Hide the UI |
 | `Esc` | Close overlays |
 
-- **Presenter mode** opens in a second tab with a timer, next-slide preview, and editable notes — kept in sync with the audience tab via `BroadcastChannel`.
-- **Annotations are content-anchored**: a circle drawn around a stat on a laptop rings the same stat on a phone, wherever the layout moved it. Drawings persist per slide.
-- **Deep links**: the URL hash tracks the slide (`/#7`), so you can share a link straight to a slide.
+Slides are deep-linkable with hashes such as `/#3`. Drag and hover the claim field, graph, and globe. Presenter mode uses a separate tab synchronized through `BroadcastChannel`; edited notes and annotations are stored locally.
 
-## Component library
+## Update the snapshot for review
 
-| | Components |
-| --- | --- |
-| **Structure** | `Cover` `Agenda` `Section` `Split` `Bento` `Slide` |
-| **Data** | `Charts` (bar · line · donut) `Table` `StatGrid` `BigNumber` `CountUp` `VisualDashboard` |
-| **Story** | `Quote` `Contrast` `Comparison` `Timeline` `Steps` `Chat` |
-| **Product** | `CodeWindow` `BrowserFrame` `Pricing` `Team` |
-| **Flair** | `Globe` `TiltCard` `SpotlightCard` `Marquee` `Accordion` `Tabs` |
+The source of figures is the public ledger's `ledger.json`. Updating requires a separately obtained public JSON file and Python 3:
 
-All of them are demoed in the bundled starter deck, and all of them are responsive.
-
-## Theming
-
-Every color, font, radius, and shadow lives in the `:root` block of [`src/styles/tokens.css`](./src/styles/tokens.css). Change `--primary` and the entire deck — chrome included — recolors. Nine ready-made theme directions are documented in the skill, from editorial luxury to dark technical.
-
-## Project structure
-
-```
-.bolt/skills/slides/   the agent-facing authoring guide (the skill)
-src/deck/              engine + chrome — Deck, Slide, Build, Reveal, Annotator
-src/components/        the slide component library
-src/styles/            tokens.css (theme) + base.css (system styles)
-src/App.tsx            your deck (ships with the component demo)
+```sh
+python3 scripts/refresh_data.py /path/to/ledger.json
+# Optional second argument: verified total ledger commit count for the cadence slide.
+git diff -- src/data/claims.ts src/App.tsx
+npx tsc --noEmit
+npm run build -- --base=./
+npm run preview
 ```
 
-## Contributing
+The generator updates `src/data/claims.ts` and selected statistics in `src/App.tsx`. It asserts expected replacement counts and reports editorial points requiring human judgment. Review that output, slide wording, chart captions, speaker notes, dates, and provenance together; changing numeric data does not make every narrative statement current. Check that no private material is introduced before publishing. This documentation change does not run a refresh or alter the July 17 figures.
 
-Issues and PRs welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md). `npm run dev` to hack, `npx tsc --noEmit && npm run build` before you push.
+For an authenticated `gh` installation, the convenience wrapper can fetch the public board and build without publishing:
 
-## License
+```sh
+SKIP_DEPLOY=1 bash scripts/refresh.sh
+```
 
-[MIT](./LICENSE) © StackBlitz
+It still edits local source and reads GitHub. **Do not use the wrapper's default invocation for a review-only update:** without `SKIP_DEPLOY=1`, it commits, pushes `main` through a remote named `deck`, and force-pushes a `gh-pages` deployment. Review and publish through your normal approved process instead. Neither refresh nor deployment was executed for this README repair.
+
+## Source and attribution
+
+- `src/App.tsx`: Chikeka Ledger slide content and snapshot statistics.
+- `src/data/claims.ts`: bundled claim nodes and relationships.
+- `src/components/ClaimField3D.tsx`, `ClaimGraph.tsx`, `CalibrationCurve.tsx`: ledger visualizations.
+- `src/deck/`: responsive deck engine and presentation controls.
+- `src/styles/tokens.css`: theme; `scripts/`: data regeneration tools.
+
+This project adapts [Bolt Slides by StackBlitz](https://github.com/stackblitz/bolt-slides). Its deck engine, component library, and [authoring skill](.bolt/skills/slides/SKILL.md) remain available. The old starter screenshots show upstream demonstrations rather than this ledger deck, so they are not presented as current product screenshots here.
+
+The upstream [MIT license](LICENSE), copyright © 2026 StackBlitz, and source attribution are retained. See [CONTRIBUTING.md](CONTRIBUTING.md) for the inherited contributor guide.
